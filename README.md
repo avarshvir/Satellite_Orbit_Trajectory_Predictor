@@ -376,6 +376,7 @@ orbit_predictor/
 │   ├── evaluate.py          metrics, position error, and plots
 │   └── app.py               Streamlit demo
 ├── requirements.txt
+├── main.py                  
 ├── .env                     Space-Track credentials (not committed)
 └── README.md
 ```
@@ -418,6 +419,8 @@ python preprocess.py      # scale, window, and split
 python train.py           # train the model
 python evaluate.py        # measure accuracy and save plots
 streamlit run app.py      # launch the interactive demo
+or 
+python main.py            # from root folder
 ```
 
 ---
