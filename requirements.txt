@@ -1,32 +1,22 @@
 
-# ---- Data acquisition (TLE download) ----
-spacetrack==2.1.0        # Historical TLEs from Space-Track.org (needs free account)
-requests==2.34.2         # Fetch live TLEs from CelesTrak (no login)
+# for data
+spacetrack==2.1.0        # Historical TLEs from Space-Track.org
+requests==2.34.2       
 
-# ---- Orbital mechanics (physics baseline: SGP4) ----
-sgp4==2.27               # Core SGP4 propagator: TLE -> position/velocity
-skyfield==1.55           # High-level wrapper over sgp4 (time & frame handling)
+# orbital mechanics (physics baseline: SGP4)
+sgp4==2.27               # core sgp4 propagator: TLE -> position/velocity
+skyfield==1.55           # wrapper over sgp4 (time & frame handling)
 astropy==8.0.1           # Coordinate frames, units, time conversions
 
-# ---- Core data / math ----
-numpy==2.5.3            # Arrays & math
-pandas==3.0.5            # Data wrangling (TLE tables, CSVs)
-scipy==1.18.1            # Interpolation & signal helpers
 
-# ---- Classical ML baseline + preprocessing ----
-scikit-learn==1.9.0      # RandomForest baseline, scalers, metrics (RMSE/MAE)
-
-# ---- Deep learning (main model: LSTM) ----
-torch==2.14.0             # PyTorch: the LSTM sequence model
-
-# ---- Visualization ----
-matplotlib==3.11.1        # 3D orbit plots, error curves
-plotly==7.0.0           # Interactive 3D trajectory (optional, nice for demo)
-seaborn==0.13.2          # Prettier statistical plots
-
-# ---- Demo UI ----
-streamlit==1.63.0        # Web app: pick satellite -> forecast -> visualize
-
-# ---- Utilities ----
-python-dotenv==1.0.1     # Load Space-Track credentials from a .env file (safe)
-tqdm==4.66.4             # Progress bars for downloads/training
+numpy==2.5.3           
+pandas==3.0.5            
+scipy==1.18.1           
+scikit-learn==1.9.0     
+torch==2.14.0            
+matplotlib==3.11.1        
+plotly==7.0.0           
+seaborn==0.13.2          
+streamlit==1.63.0
+python-dotenv==1.0.1     
+tqdm==4.66.4             # progress bars for downloads/training
