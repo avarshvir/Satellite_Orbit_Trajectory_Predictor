@@ -1,17 +1,12 @@
-# Satellite Orbit / Trajectory Predictor
+# Satellite Orbit Trajectory Predictor
 
-A machine learning system that forecasts a satellite's future orbit by learning
+A machine learning system that forecasts a satellites future orbit by learning
 how its orbital elements evolve over time. The model is a Long Short-Term Memory
 (LSTM) network trained on one year of real tracking data for the International
-Space Station (ISS), and it reconstructs the satellite's three-dimensional
+Space Station (ISS), and it reconstructs the satellites 3-dimensional
 position from the predicted elements using the SGP4 propagator.
 
-The project was built as an end-to-end, production-oriented pipeline: it
-downloads real data automatically, transforms it, trains a model, evaluates the
-result in physically meaningful units (kilometers), and exposes an interactive
-demonstration through a web interface. Although it is validated on the ISS, the
-pipeline is satellite-agnostic and can be pointed at any catalogued object by
-changing a single identifier.
+It is ready-to-use system that handles everything automatically: it pulls live data, clean it, trains a model, and measures accuracy in real-world units like kilometers through an interactive web demo. I tested it on the ISS, but you can easily point it at any other satellite or tracked object just by changing a single ID.
 
 ---
 
@@ -41,22 +36,11 @@ changing a single identifier.
 
 ## 1. Problem Statement
 
-There are tens of thousands of tracked objects in Earth orbit today: active
-satellites, spent rocket bodies, and debris. Knowing where these objects will be
-in the future is essential for avoiding collisions. A single collision can create
-thousands of new debris fragments, which in turn threaten other spacecraft. This
-cascading risk is known as the Kessler Syndrome.
+Right now, thousands of things are floating around our Mother Earth like satellites, old rocket parts,debris, space junk and etc etc. Knowing where these things will be tomorrow is super important so they don't crash into each other. If just one crash happens, it makes thousands of new pieces of trash, which can then hit other stuff. This snowball effect is called the Kessler Syndrome.
 
-The standard tool for propagating an orbit forward in time is the SGP4 analytical
-model. SGP4 is fast and widely used, but it has a known weakness: it cannot
-perfectly model the forces that slowly change an orbit, most importantly
-atmospheric drag and solar radiation pressure. As a result, its predictions drift
-by kilometers over the course of days.
+To figure out where a satellite is going, people usually use a math model called SGP4. It's fast and everyone uses it, but it has a big problem: it's not great at guessing the forces that slowly mess with orbits, like air drag from the atmosphere and pressure from the sun. Because of this, its predictions can be off by kilometers after just a few days.
 
-This project asks a focused question: **can a data-driven model learn the
-patterns in how an orbit changes over time, and use that to predict a satellite's
-future state?** Instead of relying purely on physics, the model learns from the
-history of the satellite's own tracking data.
+This project looks at one simple question: **can a smart data model figure out how an orbit changes over time, and use that to guess where a satellite will go next?** Instead of just trusting standard physics equations, the model learns by looking at the satellite's past tracking history.
 
 ---
 
@@ -66,9 +50,9 @@ In one sentence: the system looks at the last thirty recorded orbital states of 
 satellite and predicts the next one, then converts that prediction into a real
 three-dimensional position in space.
 
-More concretely, it:
+In Simple terns:
 
-- Automatically downloads one year of real ISS tracking data.
+- It Automatically downloads one year of real ISS tracking data.
 - Converts each raw tracking record into a set of orbital elements.
 - Prepares the data as overlapping time windows suitable for sequence modeling.
 - Trains an LSTM network to predict the next orbital state from the previous
