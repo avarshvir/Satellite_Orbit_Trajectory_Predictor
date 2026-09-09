@@ -49,9 +49,6 @@ REVPDAY_TO_RADPMIN = (2.0 * math.pi) / 1440.0
 EARTH_RADIUS_KM = 6371.0
 
 
-# ------------------------------------------------------------
-# Cached loaders (so we don't reload on every slider move)
-# ------------------------------------------------------------
 @st.cache_resource
 def load_model_and_scaler():
     ckpt = torch.load(config.MODEL_PATH, map_location="cpu")
@@ -68,9 +65,6 @@ def load_test_data():
     return data
 
 
-# ------------------------------------------------------------
-# Build a full orbit (many points) from one element vector via SGP4
-# ------------------------------------------------------------
 def full_orbit_track(vec, n_points: int = 200):
     """
     Propagate one element set across a full period to trace the orbit ring.
@@ -105,9 +99,6 @@ def full_orbit_track(vec, n_points: int = 200):
     return np.array(xs), np.array(ys), np.array(zs)
 
 
-# ------------------------------------------------------------
-# Earth sphere for the 3D plot
-# ------------------------------------------------------------
 def earth_mesh(radius: float = EARTH_RADIUS_KM, n: int = 30):
     u = np.linspace(0, 2 * np.pi, n)
     v = np.linspace(0, np.pi, n)
